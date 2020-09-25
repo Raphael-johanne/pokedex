@@ -1,0 +1,2 @@
+email,password
+rcolboc.dev@gmail.com, "$argon2id$v=19$m=65536,t=4,p=1$TW8m+Rj1LQvgRUXFiY5p7w$osK9Je7/lEdIx+5iWzDu/NCMUmBfQiZz7O/C24pxebk"
