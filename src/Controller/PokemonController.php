@@ -31,9 +31,9 @@ class PokemonController extends AbstractController
     /**
      * Put Pokemon
      * 
-     * @param  Request                  $request
-     * @param  ValidatorInterface       $validator
-     * @param  EntityManagerInterface   $entityManager
+     * @param Request                   $request
+     * @param ValidatorInterface        $validator
+     * @param EntityManagerInterface    $entityManager
      * 
      * @return void
      * 
@@ -79,9 +79,9 @@ class PokemonController extends AbstractController
     /**
      * Delete Pokemon
      * 
-     * @param  Request                  $request
-     * @param  PokemonRepository        $pokemonRepository
-     * @param  EntityManagerInterface   $entityManager
+     * @param Request                   $request
+     * @param PokemonRepository         $pokemonRepository
+     * @param EntityManagerInterface    $entityManager
      * 
      * @return void
      * 
@@ -125,8 +125,8 @@ class PokemonController extends AbstractController
     /**
      * Get Pokemon information
      * 
-     * @param  Request              $request
-     * @param  PokemonRepository    $pokemonRepository
+     * @param Request           $request
+     * @param PokemonRepository $pokemonRepository
      * 
      * @return void
      * 
@@ -161,8 +161,8 @@ class PokemonController extends AbstractController
     /**
      * Get Pokemon's list
      * 
-     * @param  Request              $request
-     * @param  PokemonRepository    $pokemonRepository
+     * @param Request           $request
+     * @param PokemonRepository $pokemonRepository
      * 
      * @return void
      * 
@@ -203,9 +203,9 @@ class PokemonController extends AbstractController
     /**
      * Update Pokemon
      * 
-     * @param  Request                  $request
-     * @param  EntityManagerInterface   $entityManager
-     * @param  PokemonRepository        $pokemonRepository
+     * @param Request                   $request
+     * @param EntityManagerInterface    $entityManager
+     * @param PokemonRepository         $pokemonRepository
      * 
      * @return void
      * 
@@ -251,13 +251,14 @@ class PokemonController extends AbstractController
     /**
      * Build Pokemon
      * 
-     * @param   $content
-     * @param   $item
+     * @param $content
+     * @param $item
      * 
-     * @return  Pokemon
+     * @return Pokemon
      */
     protected function build($content, $item = null) {
-        $date   = new \DateTime();
+        $date           = new \DateTime();
+        $existingTypes  = $this->getTypes();
 
         if (is_null($item)) {
             $item   = new Pokemon();

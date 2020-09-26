@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use JMS\Serializer\SerializerBuilder;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use App\Entity\Type;
 
 Abstract class AbstractController extends AbstractFOSRestController
 {
@@ -27,11 +28,23 @@ Abstract class AbstractController extends AbstractFOSRestController
      * 
      * @param $data
      * 
-     * return string
+     * @return string
      */
     protected function getSerialize($data)
     {
         $serializer = SerializerBuilder::create()->build();
         return $serializer->serialize($data, self::FORMAT);
+    }  
+
+    /**
+     * get types
+     * 
+     * @return Type[]
+     */
+    protected function getTypes()
+    {
+        return $this->getDoctrine()
+            ->getRepository(Type::class)
+            ->findAll();
     }  
 }

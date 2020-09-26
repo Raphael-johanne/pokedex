@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use FOS\RestBundle\Controller\Annotations\Get;
-use App\Repository\TypeRepository;
 use App\Controller\AbstractController;
 
 class TypeController extends AbstractController
@@ -11,17 +10,15 @@ class TypeController extends AbstractController
     /**
      * Get Types
      * 
-     * @param  TypeRepository $repository
-     * 
      * @return void
      * 
      * @Get(
      *     path = "/api/pokedex/types"
      * )
      */
-    public function getTypesAction(TypeRepository $repository)
+    public function getTypesAction()
     {
-        $items  = $repository->findAll();
+        $items  = $this->getTypes();
         $view   = $this->view($this->getSerialize($items), 200);
 
         return $this->handleView($view);
