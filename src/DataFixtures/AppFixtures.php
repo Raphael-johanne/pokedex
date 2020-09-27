@@ -93,9 +93,9 @@ class AppFixtures extends Fixture
                      * but it is not the good solution, working on it.
                     */
                     if (!isset($line[1])) continue;
-
-                    $data[] = $line;
                     
+                    //$data[] = $line;
+
                     $item = new Pokemon();
                     $item->setName($line[1]);
                     
@@ -118,7 +118,9 @@ class AppFixtures extends Fixture
                         ->setDefense($line[6])
                         ->setSpAttack($line[7])
                         ->setSpDefense($line[8])
-                        ->setSpeed($line[9])
+                        ->setSpeed($line[10])
+                        ->setGeneration($line[11])
+                        ->setLegendary($line[12])
                         ->setDate($date);
                  
                     $manager->persist($item);
@@ -134,6 +136,9 @@ class AppFixtures extends Fixture
              * Proceed types installation
             */
             /*
+
+            
+
             foreach ($data as $row) {
                 foreach ([2,3] as $key) {
                     if ($row[$key]) {

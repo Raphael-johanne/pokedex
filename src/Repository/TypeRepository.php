@@ -28,7 +28,6 @@ class TypeRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 }

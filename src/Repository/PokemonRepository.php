@@ -31,7 +31,7 @@ class PokemonRepository extends ServiceEntityRepository
     /**
      * Search 
      * 
-     * @return Pokemon[] Returns an array of Pokemons
+     * @return Pokemon[] Array of Pokemons
      */
     public function search($filters)
     {

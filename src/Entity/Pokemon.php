@@ -82,6 +82,16 @@ class Pokemon
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $generation;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $legendary;
+
     public function __construct()
     {
         $this->types = new ArrayCollection();
@@ -210,6 +220,30 @@ class Pokemon
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getGeneration(): ?int
+    {
+        return $this->generation;
+    }
+
+    public function setGeneration(int $generation): self
+    {
+        $this->generation = $generation;
+
+        return $this;
+    }
+
+    public function getLegendary(): ?bool
+    {
+        return $this->legendary;
+    }
+
+    public function setLegendary(bool $legendary): self
+    {
+        $this->legendary = $legendary;
 
         return $this;
     }

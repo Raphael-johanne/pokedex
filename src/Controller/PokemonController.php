@@ -271,6 +271,8 @@ class PokemonController extends AbstractController
         $item->setSpAttack($content->sp_attack);
         $item->setSpDefense($content->sp_defense);
         $item->setSpeed($content->speed);
+        $item->setGeneration($content->generation);
+        $item->setLegendary($content->legendary);
 
         foreach($content->types as $typeInfo) {
             $type = new Type();

@@ -7,6 +7,19 @@
 	"item": [
 		{
 			"name": "[POST] Create token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ddcdfec1-9b76-41f6-b0a3-b058c04daf62",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -40,13 +53,25 @@
 		},
 		{
 			"name": "[GET] Pokemon's type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f64c840-7427-4c78-86c6-00b7ee270559",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDEwNTc4MzQsImV4cCI6MTYwMTA2MTQzNCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicmNvbGJvYy5kZXZAZ21haWwuY29tIn0.hMEemzkKISCBNN_tI7VL292_Bi7MXMeFf-JnFsVLUD_uWJY6b9nmU_3R0xHAjkQeccgk_sHp2mUfAxGG5ax7gQ0zYuSKTdvvgknuU6jzEc8dLm4ujfmSqxA2EPI-xfjXrRO6Wv_eX7h89FMz6Sj34YwcfQ13n9N3wlu4xu83bhHS7Koph7hKqrr_hMuN2ge2VfGxTgzvkulhqoZs84hH32zP9YWVNDJMSDGlkEDnGWap_D9BZ4rZc3OY2su499UzJxoHJdHDgRgXoi_wJ29w1d0iOlrMhVzdz1tzco2AgdPdbPHpMnNyZhhwrsHo4YJCfxekutQxlgp74juo5U9mvqHTq0NrgpDHskjpa_DOsSUaTVGsxq0uMAcMso2DyNwzus8yZRuDWl3iOl5z-rE9x6o32jKud2b6VdJFpfX9s-xTJcuAj7fAtVl0clEiY-Mi9A5lHSDdK54Z_H96NZwC-cwMCQF1cWdYRdHweTEiKrx8_kteJW8bvBl6SPbxy5kSnE6enz4k7mujafZyCLlCK1rg5KNf5y7GiTGgehwVmEvzjBssXIxyYdp9kCEcWPJRX-9_tnOC9h1sP0fld59ZnHEU30FqxyXpV1l8SJZR0b9bLLv-Th4Iz3oYdFlFcaCxax1mkj410-WkB0N8YvnWF8_kqaxPRzSJLawE1-JtwHg",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -76,11 +101,21 @@
 		{
 			"name": "[PUT] Pokemon",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Bergmitegg\",\n    \"hp\":10,\n    \"attack\":10,\n    \"defense\":10,\n    \"sp_attack\":10,\n    \"sp_defense\":10,\n    \"speed\":-5,\n    \"types\": [\n        {\n            \"name\":\"type1\"\n        }\n    ]\n}\n"
+					"raw": "{\n    \"name\":\"Carlito\",\n    \"hp\":10,\n    \"attack\":10,\n    \"defense\":10,\n    \"sp_attack\":10,\n    \"sp_defense\":10,\n    \"speed\":-5,\n    \"generation\":1,\n    \"legendary\":0,\n    \"types\": [\n        {\n            \"name\":\"type1\"\n        }\n    ]\n}\n"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/pokedex/pokemon",
@@ -109,7 +144,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDEwNTU0MzAsImV4cCI6MTYwMTA1OTAzMCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicmNvbGJvYy5kZXZAZ21haWwuY29tIn0.SfsNR_Nl3d1-QtpLq8gly6m4Kcv81y8yDNLBhqf47zypK97ZvWDOkXRNmLJO3dxp6U6FoJz8g5CB1XiP7KN_LC-Q6j5q1lK7kOiXejSBAGPcq4ZzqMbVj3JG0wHSebXzv8vxYjJj1EKzxPLPnYtJLjjzaYiq4lHB6ek_4KAKuItQs6hEkjgbOdtqhHnEQsHzQu3geV4Igbm3o45VIlwBPQA6UR-aJXWkJgnMEpnRHuxggkBMHtox3Fm39_vB1K3shdwfwz9ZAlEVcTS7cHpAuj4V6BrKmLqDJts33TdPFklkaFp0J-G7LTQ8uptnWjV8Kl-nfeD91P3YK8_Mj0IwA4nmVJe-IRcEk4iudWAETPgMEyKj3-3ZbwEk4jRgb5htMYXDhEs0IkhoMwOvrPGPLXZvBzOgp7ZZNm9vHc1kq8amzzyxAgZdcq4Fkc7n3SRZJsbztkdm4FSObvu-9k6JYOqYBrkfZPyfPJ2ubRO8N-KJXYJPJGqSM6IOQLd_b1o1f9QS6-nKlgmffkpP-sQMYyj3cIaVSuLOfFK3Cj0vgbjWNPwRcny2uOfLvxI5a3QKoayrE8sT9sfowDgdz1C65zrzH7tJGyrY_ogM1qc_T9DjLdYU7qpUgCUDAqCbTbdXr5FHmMpyYqEJ8gxZl4W44g53nkH_93X7g6ki4RWQugM",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -118,7 +153,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Bergmite\",\n    \"hp\":999,\n    \"attack\":999,\n    \"defense\":999,\n    \"sp_attack\":999,\n    \"sp_defense\":999,\n    \"speed\":-5\n}\n"
+					"raw": "{\n    \"name\":\"Mewtwo\",\n    \"hp\":999,\n    \"attack\":999,\n    \"defense\":999,\n    \"sp_attack\":999,\n    \"sp_defense\":999,\n    \"speed\":-5,\n    \"generation\":5,\n    \"legendary\":0\n}\n"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/pokedex/pokemon",
@@ -142,6 +177,16 @@
 		{
 			"name": "[DEL] Pokemon",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -178,7 +223,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDEwNTU0MzAsImV4cCI6MTYwMTA1OTAzMCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicmNvbGJvYy5kZXZAZ21haWwuY29tIn0.SfsNR_Nl3d1-QtpLq8gly6m4Kcv81y8yDNLBhqf47zypK97ZvWDOkXRNmLJO3dxp6U6FoJz8g5CB1XiP7KN_LC-Q6j5q1lK7kOiXejSBAGPcq4ZzqMbVj3JG0wHSebXzv8vxYjJj1EKzxPLPnYtJLjjzaYiq4lHB6ek_4KAKuItQs6hEkjgbOdtqhHnEQsHzQu3geV4Igbm3o45VIlwBPQA6UR-aJXWkJgnMEpnRHuxggkBMHtox3Fm39_vB1K3shdwfwz9ZAlEVcTS7cHpAuj4V6BrKmLqDJts33TdPFklkaFp0J-G7LTQ8uptnWjV8Kl-nfeD91P3YK8_Mj0IwA4nmVJe-IRcEk4iudWAETPgMEyKj3-3ZbwEk4jRgb5htMYXDhEs0IkhoMwOvrPGPLXZvBzOgp7ZZNm9vHc1kq8amzzyxAgZdcq4Fkc7n3SRZJsbztkdm4FSObvu-9k6JYOqYBrkfZPyfPJ2ubRO8N-KJXYJPJGqSM6IOQLd_b1o1f9QS6-nKlgmffkpP-sQMYyj3cIaVSuLOfFK3Cj0vgbjWNPwRcny2uOfLvxI5a3QKoayrE8sT9sfowDgdz1C65zrzH7tJGyrY_ogM1qc_T9DjLdYU7qpUgCUDAqCbTbdXr5FHmMpyYqEJ8gxZl4W44g53nkH_93X7g6ki4RWQugM",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -187,7 +232,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Bergmite\"\n}\n"
+					"raw": "{\n    \"name\":\"Carlito\"\n}\n"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/pokedex/pokemon",
@@ -219,7 +264,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDEwNTEyMTYsImV4cCI6MTYwMTA1NDgxNiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicmNvbGJvYy5kZXZAZ21haWwuY29tIn0.Q2-00fX1y9QWcFghVsbwnkMN3iOxz9uLbcmxhCkA8HsbAEuAhoM9iLQCqhY2FwsxIlaLCDHRsOUknCrsvy1SPo5r703CS8uFMo0JGzwyFEZbxHqgtvihHSK-72eRTdd__LLjptm3VNIX6rkiancQeaLEl0oUkYev-4RwoL-DklFu0a2ESCsPKVMlzElA2DsvbCpA3c2s7WRzAHbkQi3rMBsXO4M7Woe91uaXe5bAK-OXwxIH1XuVf3K9uyzzrXRZvCIdn1R5oUrgSFF_8HAmadDknBhjrA-Jc_72NxFwP3gwRTD3SZxVc2_dpMLBeyDHG7aeH-7JJgYamKCmRbup0r6X8nlXy-Th-ORzwKNt3OeXlJuPGPHmqK150y2DJbXEPXXxuOw26cCwg4eM7zPatLrfujFDFm_f_y8nd2a5eCUv8WeGNk0YYOtUgzCCOy5XeLtrRlDzlVTg6yHNII64UItq3AZTGt74lnzg-2irk-hWRxiFTDqrUel_TBq_iaj6NiKCxF5d0nFovBWbW7_hG61Ukw3HFfD4mlkfb_AMfJjr8n9inEPHC9cjQy1rd7LM2_lZgEP1DtRG4Mt4Laegy-gTwPUx1Z_-g5MGlIS1v3EdJj5FIBaeQuzc4v9XuuhUELKueR-RWZstE3Li1OLEmmnSp-NpRqXN6vmNMCLNr8Y",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
