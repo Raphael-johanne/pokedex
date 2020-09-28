@@ -71,11 +71,7 @@ class UserFixtures extends Fixture
                         throw new \Exception('Columns does not match with the contract');
                     }
                 } else {
-                    /**
-                     * @TODO at the end of the file an empty line brokes the script
-                     * because of verification, little solution, it's to avoid it 
-                     * but it is not the good solution, working on it.
-                     */
+                
                     if (!isset($line[1])) continue;
 
                     $item = new User();

@@ -258,7 +258,8 @@ class PokemonController extends AbstractController
      */
     protected function build($content, $item = null) {
         $date           = new \DateTime();
-        $existingTypes  = $this->getTypes();
+        $typeRepository = $this->getDoctrine()
+            ->getRepository(Type::class);
 
         if (is_null($item)) {
             $item   = new Pokemon();
@@ -275,9 +276,15 @@ class PokemonController extends AbstractController
         $item->setLegendary($content->legendary);
 
         foreach($content->types as $typeInfo) {
-            $type = new Type();
-            $type->setName($typeInfo->name);
-            $type->setDate($date);
+
+            $type = $typeRepository->findOneByName($typeInfo->name);
+
+            if (is_null($type)) {
+                $type = new Type();
+                $type->setName($typeInfo->name);
+                $type->setDate($date);
+            }
+   
             $item->addType($type);
         }
 

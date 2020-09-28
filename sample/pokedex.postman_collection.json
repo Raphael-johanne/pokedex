@@ -115,7 +115,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Carlito\",\n    \"hp\":10,\n    \"attack\":10,\n    \"defense\":10,\n    \"sp_attack\":10,\n    \"sp_defense\":10,\n    \"speed\":-5,\n    \"generation\":1,\n    \"legendary\":0,\n    \"types\": [\n        {\n            \"name\":\"type1\"\n        }\n    ]\n}\n"
+					"raw": "{\n    \"name\":\"Carlito\",\n    \"hp\":10,\n    \"attack\":10,\n    \"defense\":10,\n    \"sp_attack\":10,\n    \"sp_defense\":10,\n    \"speed\":-5,\n    \"generation\":1,\n    \"legendary\":0,\n    \"types\": [\n        {\n            \"name\":\"type1\"\n        },\n        {\n            \"name\":\"type2\"\n        }\n    ]\n}\n"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/pokedex/pokemon",
@@ -153,7 +153,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Mewtwo\",\n    \"hp\":999,\n    \"attack\":999,\n    \"defense\":999,\n    \"sp_attack\":999,\n    \"sp_defense\":999,\n    \"speed\":-5,\n    \"generation\":5,\n    \"legendary\":0\n}\n"
+					"raw": "{\n    \"name\":\"Carlito\",\n    \"hp\":999,\n    \"attack\":100,\n    \"defense\":999,\n    \"sp_attack\":999,\n    \"sp_defense\":999,\n    \"speed\":-5,\n    \"generation\":5,\n    \"legendary\":0,\n    \"types\": [\n        {\n            \"name\":\"type1\"\n        },\n        {\n            \"name\":\"type2\"\n        }\n    ]\n}\n"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/pokedex/pokemon",
@@ -191,7 +191,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Bergmitegg\"\n}\n"
+					"raw": "{\n    \"name\":\"Carlito\"\n}\n"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/api/pokedex/pokemon",
@@ -273,10 +273,10 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"Avalugg\"\n}\n"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/pokedex/pokemon/search?type=water",
+					"raw": "http://127.0.0.1:8000/api/pokedex/pokemon/search?p=0&dest=ASC&fulltext=Carlito&type=type2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -294,22 +294,23 @@
 					"query": [
 						{
 							"key": "p",
-							"value": "2",
-							"disabled": true
+							"value": "0",
+							"description": "Pagination"
 						},
 						{
 							"key": "dest",
-							"value": "DESC",
-							"disabled": true
+							"value": "ASC",
+							"description": "ASC or DESC"
 						},
 						{
 							"key": "fulltext",
-							"value": "Pikachu",
-							"disabled": true
+							"value": "Carlito",
+							"description": "Pokemon name"
 						},
 						{
 							"key": "type",
-							"value": "water"
+							"value": "type2",
+							"description": "Type name"
 						}
 					]
 				}

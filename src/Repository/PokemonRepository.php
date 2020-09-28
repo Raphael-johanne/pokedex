@@ -61,7 +61,7 @@ class PokemonRepository extends ServiceEntityRepository
    
         $results = $query->getQuery()
             ->getResult();
-       
+
         return $results;
     }
     

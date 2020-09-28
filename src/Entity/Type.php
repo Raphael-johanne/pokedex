@@ -6,9 +6,11 @@ use App\Repository\TypeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping\Index;
 
 /**
  * @ORM\Entity(repositoryClass=TypeRepository::class)
+ * @ORM\Table(indexes={@ORM\Index(name="name_idx", columns={"name"})})
  * @UniqueEntity("name")
  */
 class Type

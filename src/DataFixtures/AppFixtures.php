@@ -87,44 +87,10 @@ class AppFixtures extends Fixture
                         throw new \Exception('Columns does not match with the contract');
                     }
                 } else {
-                    /**
-                     * @TODO at the end of the file an empty line brokes the script
-                     * because of verification, little solution, it's to avoid it 
-                     * but it is not the good solution, working on it.
-                    */
+                
                     if (!isset($line[1])) continue;
                     
-                    //$data[] = $line;
-
-                    $item = new Pokemon();
-                    $item->setName($line[1]);
-                    
-                    if ($line[2]) {
-                        $type1 = new Type();
-                        $type1->setName($line[2]);
-                        $type1->setDate($date);
-                        $item->addType($type1);
-                    }
-
-                    if ($line[3]){
-                        $type2 = new Type();
-                        $type2->setName($line[3]);
-                        $type2->setDate($date);
-                        $item->addType($type2);
-                    }
-                    
-                    $item->setHp($line[4])
-                        ->setAttack($line[5])
-                        ->setDefense($line[6])
-                        ->setSpAttack($line[7])
-                        ->setSpDefense($line[8])
-                        ->setSpeed($line[10])
-                        ->setGeneration($line[11])
-                        ->setLegendary($line[12])
-                        ->setDate($date);
-                 
-                    $manager->persist($item);
-                    
+                    $data[] = $line;
                 }
 
                 $i++;
@@ -135,47 +101,30 @@ class AppFixtures extends Fixture
             /**
              * Proceed types installation
             */
-            /*
-
-            
-
             foreach ($data as $row) {
                 foreach ([2,3] as $key) {
-                    if ($row[$key]) {
-
+                    if ($row[$key] && !isset($types[$row[$key]])) {
                         $type = new Type();
                         $type->setName($row[$key]);
                         $type->setDate($date);
-                        $types[] = $type;
+                        $types[$row[$key]] = $type;
                         $manager->persist($type);
                     }
-                    
                 }
             }
-            */
+            
             /**
              * Proceed pokemon installation
             */
-            /*
             foreach ($data as $row) {
                 $item = new Pokemon();
                     
-                if ($line[2]) {
-                    //$types[] = $line[2];
-                    //$type1 = new Type();
-                    //$type1->setName($row[2]);
-                    //$type1->setDate($date);
-                    //$item->addType($type1);
+                foreach ([2,3] as $key) {
+                    if ($row[$key] && isset($types[$row[$key]])) {
+                        $item->addType($types[$row[$key]]);
+                    }
                 }
 
-                if ($line[3]){
-                    //$types[] = $line[3];
-                    //$type2 = new Type();
-                    //$type2->setName($line[3]);
-                    //$type2->setDate($date);
-                    // $item->addType($type2);
-                }
-                
                 $item->setName($row[1])
                     ->setHp($row[4])
                     ->setAttack($row[5])
@@ -183,11 +132,12 @@ class AppFixtures extends Fixture
                     ->setSpAttack($row[7])
                     ->setSpDefense($row[8])
                     ->setSpeed($row[9])
+                    ->setGeneration($row[11])
+                    ->setLegendary($row[12])
                     ->setDate($date);
                 
                 $manager->persist($item);
             }
-            */
     
             $manager->flush();
 

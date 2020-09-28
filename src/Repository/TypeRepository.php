@@ -30,4 +30,20 @@ class TypeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Find One By Name
+     * 
+     * @param string $name
+     * 
+     * @return Type|null
+     */
+    public function findOneByName($value): ?Type
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.name = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
